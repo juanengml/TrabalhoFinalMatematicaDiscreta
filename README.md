@@ -92,20 +92,32 @@ HTML('<img src="./merge.gif" style="width:200px;height:200px;" >')
 <b>Merge(A, p, q, r)</b>
 
     n1 = q - p + 1
+    
     n2 = r - q
+    
     sejam L[1 ... n1 + 1] e R[1 ... n2 + 1]
+    
     for i = 1 to n1
+    
         L[i] = A[p + i - 1]
+        
     for j = 1 to n2
+    
         R[j] = A[q + j]
 
     i = 1
+    
     j = 1
+    
 
     for k = p to r
+    
         if L[i] <= R[j] then A[k] = L[i]
+        
             i = i + 1
+            
         else A[k] = R[j]
+        
             j = j + 1
             
             
@@ -113,47 +125,86 @@ HTML('<img src="./merge.gif" style="width:200px;height:200px;" >')
 
 ### Citações para a descrição do algoritmo e pseudocódigo
 mergesort(A[0...n - 1], inicio, fim)
+
 |   se(inicio < fim)
+
 |   |   meio ← (inicio + fim) / 2 //calcula o meio
+
 |   |   mergesort(A, inicio, meio) //ordena o subvetor esquerdo
+
 |   |   mergesort(A, meio + 1, fim) //ordena o subvetor direito
+
 |   |   merge(A, inicio, meio, fim) //funde os subvetores esquerdo e direito
+
 |   fim_se
+
 fim_mergesort
 
 merge(A[0...n - 1], inicio, meio, fim)
+
 |   tamEsq ← meio - inicio + 1 //tamanho do subvetor esquerdo
+
 |   tamDir ← fim - meio //tamanho do subvetor direito
+
 |   inicializar vetor Esq[0...tamEsq - 1]
+
 |   inicializar vetor Dir[0...tamDir - 1]
+
 |   para i ← 0 até tamEsq - 1
+
 |   |   Esq[i] ← A[inicio + i] //elementos do subvetor esquerdo
+
 |   fim_para
+
 |   para j ← 0 até tamDir - 1
+
 |   |   Dir[j] ← A[meio + 1 + j] //elementos do subvetor direito
+
 |   fim_para
+
 |   idxEsq ← 0 //índice do subvetor auxiliar esquerdo
+
 |   idxDir ← 0 //índice do subvetor auxiliar direito
+
 |   para k ← inicio até fim
+
 |   |   se(idxEsq < tamEsq)
+
 |   |   |   se(idxDir < tamDir)
+
 |   |   |   |   se(Esq[idxEsq] < Dir[idxDir])
+
 |   |   |   |   |   A[k] ← Esq[idxEsq]
+
 |   |   |   |   |   idxEsq ← idxEsq + 1
+
 |   |   |   |   senão
+
 |   |   |   |   |   A[k] ← Dir[idxDir]
+
 |   |   |   |   |   idxDir ← idxDir + 1
+
 |   |   |   |   fim_se
+
 |   |   |   senão
+
 |   |   |   |   A[k] ← Esq[idxEsq]
+
 |   |   |   |   idxEsq ← idxEsq + 1
+
 |   |   |   fim_se
+
 |   |   senão
+
 |   |   |   A[k] ← Dir[idxDir]
+
 |   |   |   idxDir ← idxDir + 1
 |   |   fim_se
+
 |   fim_para
+
 fim_merge
+
 <h4><b><i>" Observe que o método merge utiliza dois vetores auxiliares. A utilização desses vetores faz com o Merge Sort tenha complexidade O(n) no espaço.
 
 Por causa da cópia de elementos entre os vetores auxiliares e o vetor A, a complexidade no tempo do método merge é Θ(n) ou O(n).
@@ -236,16 +287,27 @@ HTML('<img src="./Bubble.gif" style="width:200px;height:200px;" >')
 procedure bubbleSort( A : lista de itens ordenaveis ) defined as:
   do
     trocado := false
+    
     for each i in 0 to length( A ) - 2 do:
+    
       // verificar se os elementos estão na ordem certa
+      
       if A[ i ] > A[ i + 1 ] then
+      
         // trocar elementos de lugar
+        
         trocar( A[ i ], A[ i + 1 ] )
+        
         trocado := true
+        
       end if
+      
     end for
+    
   // enquanto houver elementos sendo reordenados.
+  
   while trocado
+  
 end procedure
 ---
 #### Codigo Python 
