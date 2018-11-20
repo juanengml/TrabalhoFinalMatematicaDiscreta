@@ -289,7 +289,7 @@ Membros & Nome\tabularnewline
 \midrule
 \endhead
 01 & Juan Manoel\tabularnewline
-02 & Robin Hoodix\tabularnewline
+02 & Robson Barreto\tabularnewline
 03 & Yang Jin Samara cavalari\tabularnewline
 04 & Gustavo Jeromine\tabularnewline
 05 & Vladimir da Silva Borges\tabularnewline
@@ -298,10 +298,37 @@ Membros & Nome\tabularnewline
 
     \subsubsection{1 - Introdução}\label{introduuxe7uxe3o}
 
-Deve conter: * Uma breve descrição do objetivo do trabalho * O que são
-algoritmos de ordenação, o que fazem, como funcionam, onde podem ser
-aplicados, importância etc * Uma breve introdução aos algoritmos
-escolhidos
+Deve conter:(Vladimir e Robson) * Uma breve descrição do objetivo do
+trabalho * O que são algoritmos de ordenação, o que fazem, como
+funcionam, onde podem ser aplicados, importância etc * Uma breve
+introdução aos algoritmos escolhidos
+
+    Objetivo:
+
+Escrever uma análise descrevendo e comparando dois algoritmos de
+ordenação distintos.
+
+Objetivos Específicos:
+
+\begin{itemize}
+\item
+  Buscar por dois algoritmos distintos de ordenação na literatura.
+\item
+  Descrever como funcionam, de onde surgiram, etc.
+\item
+  Buscar na literatura pela complexidade assintótica no melhor e pior
+  caso em notação Ozão ou Theta em relação ao tempo de execução/número
+  de operações primitivas realizadas.
+\item
+  Analizar as diferenças de complexidade entre os dois algoritmos e
+  discutir a respeito da eficiência dos mesmos.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{IPython.display} \PY{k+kn}{import} \PY{n}{HTML}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+\end{Verbatim}
+
 
     \subsubsection{2 - Descrição e Análise do Algoritmo
 1}\label{descriuxe7uxe3o-e-anuxe1lise-do-algoritmo-1}
@@ -310,70 +337,187 @@ Deve conter: * Descrição completa do primeiro algoritmo escolhido: nome,
 origem, estratégia usada, e como funciona * Estrutura do algoritmo em
 pseudocódigo * Citações para a descrição do algoritmo e pseudocódigo
 
+    \subparagraph{Descrição completa do primeiro algoritmo escolhido: nome,
+origem, estratégia usada, e como
+funciona}\label{descriuxe7uxe3o-completa-do-primeiro-algoritmo-escolhido-nome-origem-estratuxe9gia-usada-e-como-funciona}
+
+ Nome: Merge Sort Origem: Existem evidências de que o algoritmo foi
+proposto por John Von Neumann em 1945. Essa discussão existe, por que ao
+estudar as várias contribuições que ele fez é, ao mesmo tempo, complexa
+e fascinante. Essa complexidade devesse em parte a existência de muitas
+fontes de informação, algumas pouco é dificilmente acessíveis, outras
+discordantes entre si ou polêmicas. Outras contruibuições atribuem ao
+Knuth, que argumentou no seu livro `Arte de Programação Computacional:
+Ordenando e Procurando' que Von Neumann foi o primeiro a descrever a
+idéia. Estratégia usada: tenicas de classificação - Ordenação por
+partição(dividir e conquistar) o mergesort é classificado como ordenação
+por partição, que parte do princípio de "dividir para conquistar". Este
+princípio é uma técnica que foi utilizada pela primeira vez por Anatolii
+Karatsuba em 1960 e consiste em dividir um problema maior em problemas
+pequenos, e sucessivamente até que o mesmo seja resolvido diretamente.
+
+ Como funciona: a técnica realiza-se em três fases.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Divisão: o problema maior é dividido em problemas menores e os
+  problemas menores obtidos são novamente divididos sucessivamente de
+  maneira recursiva.
+\item
+  Conquista: o resultado do problema é calculado quando o problema é
+  pequeno o suficiente.
+\item
+  Combinação: os resultados dos problemas menores são combinados até que
+  seja obtida a solução do problema maior. Algoritmos que utilizam o
+  método de partição são caracterizados por serem os mais rápidos dentre
+  os outros algoritmos pelo fato de sua complexidade ser, na maioria das
+  situações, O(nlogn). Os dois representantes mais ilustres desta classe
+  são o quicksort e o mergesort
+\end{enumerate}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{k+kn}{import} \PY{n+nn}{time}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Aplicação Merge Sort}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{HTML}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}img src=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{./merge.gif}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ style=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{width:200px;height:200px;}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ \PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}68}]:} \PY{k}{def} \PY{n+nf}{merge}\PY{p}{(}\PY{n}{llist}\PY{p}{,} \PY{n}{rlist}\PY{p}{)}\PY{p}{:}
-                 \PY{n}{final} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-                 \PY{k}{while} \PY{n}{llist} \PY{o+ow}{or} \PY{n}{rlist}\PY{p}{:}
-                         \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{llist}\PY{p}{)} \PY{o+ow}{and} \PY{n+nb}{len}\PY{p}{(}\PY{n}{rlist}\PY{p}{)}\PY{p}{:}
-                                 \PY{k}{if} \PY{n}{llist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{rlist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
-                                         \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{llist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
-                                         
-                                 \PY{k}{else}\PY{p}{:}
-                                         \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rlist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
-                                          
-         
-                         \PY{k}{if} \PY{o+ow}{not} \PY{n+nb}{len}\PY{p}{(}\PY{n}{llist}\PY{p}{)}\PY{p}{:}
-                                         \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{rlist}\PY{p}{)}\PY{p}{:}
-                                               \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rlist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
-                                                
-         
-                         \PY{k}{if} \PY{o+ow}{not} \PY{n+nb}{len}\PY{p}{(}\PY{n}{rlist}\PY{p}{)}\PY{p}{:}
-                                         \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{llist}\PY{p}{)}\PY{p}{:} 
-                                               \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{llist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
-                                                
-         
-                 \PY{k}{return} \PY{n}{final}
-         
-         \PY{k}{def} \PY{n+nf}{merge\PYZus{}sort}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}\PY{p}{:}
-                 \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
-         \PY{l+s+sd}{        Sort the list passed by argument with merge.}
-         \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
-                 \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2}\PY{p}{:} \PY{k}{return} \PY{n+nb}{list}
-                 \PY{n}{mid} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
-                 \PY{k}{return} \PY{n}{merge}\PY{p}{(}\PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n+nb}{list}\PY{p}{[}\PY{p}{:}\PY{n}{mid}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n+nb}{list}\PY{p}{[}\PY{n}{mid}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}72}]:} \PY{n}{data01} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-         \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
-          \PY{n}{ini01} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-          \PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
-          \PY{n}{fim01} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-          \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tempo de Execução: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{fim01}\PY{o}{\PYZhy{}}\PY{n}{ini01}
-          \PY{n}{tempo01} \PY{o}{=} \PY{n}{fim01}\PY{o}{\PYZhy{}}\PY{n}{ini01}
-          \PY{n}{data01}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tempo01}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Tempo de Execução:  4.91142272949e-05
-Tempo de Execução:  4.41074371338e-05
-Tempo de Execução:  0.000198125839233
-Tempo de Execução:  4.31537628174e-05
-Tempo de Execução:  0.000176906585693
-Tempo de Execução:  4.31537628174e-05
-Tempo de Execução:  4.29153442383e-05
-Tempo de Execução:  4.10079956055e-05
-Tempo de Execução:  4.29153442383e-05
-Tempo de Execução:  3.69548797607e-05
+Aplicação Merge Sort
 
     \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} <IPython.core.display.HTML object>
+\end{Verbatim}
+            
+    \section{Estrutura do algoritmo em
+pseudocódigo}\label{estrutura-do-algoritmo-em-pseudocuxf3digo}
+
+    \\
+MERGE-SORT(A, p, r)
+
+\begin{verbatim}
+if p < r then  
+    q = ((p + r) / 2) //calcula o meio
+    Merge-Sort(A, p, q)
+    Merge-Sort(A, q + 1, r)
+    Merge(A, p, q, r)
+\end{verbatim}
+
+Merge(A, p, q, r)
+
+\begin{verbatim}
+n1 = q - p + 1
+n2 = r - q
+sejam L[1 ... n1 + 1] e R[1 ... n2 + 1]
+for i = 1 to n1
+    L[i] = A[p + i - 1]
+for j = 1 to n2
+    R[j] = A[q + j]
+
+i = 1
+j = 1
+
+for k = p to r
+    if L[i] <= R[j] then A[k] = L[i]
+        i = i + 1
+    else A[k] = R[j]
+        j = j + 1
+        
+        
+\end{verbatim}
+
+    \subsubsection{Citações para a descrição do algoritmo e
+pseudocódigo}\label{citauxe7uxf5es-para-a-descriuxe7uxe3o-do-algoritmo-e-pseudocuxf3digo}
+mergesort(A[0...n - 1], inicio, fim)
+|   se(inicio < fim)
+|   |   meio ← (inicio + fim) / 2 //calcula o meio
+|   |   mergesort(A, inicio, meio) //ordena o subvetor esquerdo
+|   |   mergesort(A, meio + 1, fim) //ordena o subvetor direito
+|   |   merge(A, inicio, meio, fim) //funde os subvetores esquerdo e direito
+|   fim_se
+fim_mergesort
+
+merge(A[0...n - 1], inicio, meio, fim)
+|   tamEsq ← meio - inicio + 1 //tamanho do subvetor esquerdo
+|   tamDir ← fim - meio //tamanho do subvetor direito
+|   inicializar vetor Esq[0...tamEsq - 1]
+|   inicializar vetor Dir[0...tamDir - 1]
+|   para i ← 0 até tamEsq - 1
+|   |   Esq[i] ← A[inicio + i] //elementos do subvetor esquerdo
+|   fim_para
+|   para j ← 0 até tamDir - 1
+|   |   Dir[j] ← A[meio + 1 + j] //elementos do subvetor direito
+|   fim_para
+|   idxEsq ← 0 //índice do subvetor auxiliar esquerdo
+|   idxDir ← 0 //índice do subvetor auxiliar direito
+|   para k ← inicio até fim
+|   |   se(idxEsq < tamEsq)
+|   |   |   se(idxDir < tamDir)
+|   |   |   |   se(Esq[idxEsq] < Dir[idxDir])
+|   |   |   |   |   A[k] ← Esq[idxEsq]
+|   |   |   |   |   idxEsq ← idxEsq + 1
+|   |   |   |   senão
+|   |   |   |   |   A[k] ← Dir[idxDir]
+|   |   |   |   |   idxDir ← idxDir + 1
+|   |   |   |   fim_se
+|   |   |   senão
+|   |   |   |   A[k] ← Esq[idxEsq]
+|   |   |   |   idxEsq ← idxEsq + 1
+|   |   |   fim_se
+|   |   senão
+|   |   |   A[k] ← Dir[idxDir]
+|   |   |   idxDir ← idxDir + 1
+|   |   fim_se
+|   fim_para
+fim_merge
+    " Observe que o método merge utiliza dois vetores auxiliares. A
+utilização desses vetores faz com o Merge Sort tenha complexidade O(n)
+no espaço.
+
+Por causa da cópia de elementos entre os vetores auxiliares e o vetor A,
+a complexidade no tempo do método merge é Θ(n) ou O(n).
+
+Alternativamente, podemos utilizar um único vetor auxiliar na ordenação,
+porém a complexidade no tempo e no espaço será a mesma. "
+
+{[}1{]} CORMEN, T. H. et al. Algoritmos: teoria e prática. 3 ed. Rio de
+Janeiro: Elsevier, 2012.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \paragraph{Codigo python}\label{codigo-python}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{merge}\PY{p}{(}\PY{n}{llist}\PY{p}{,} \PY{n}{rlist}\PY{p}{)}\PY{p}{:}
+                \PY{n}{final} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                \PY{k}{while} \PY{n}{llist} \PY{o+ow}{or} \PY{n}{rlist}\PY{p}{:}
+                        \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{llist}\PY{p}{)} \PY{o+ow}{and} \PY{n+nb}{len}\PY{p}{(}\PY{n}{rlist}\PY{p}{)}\PY{p}{:}
+                                \PY{k}{if} \PY{n}{llist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{rlist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                                        \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{llist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+                                        
+                                \PY{k}{else}\PY{p}{:}
+                                        \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rlist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+                                         
+        
+                        \PY{k}{if} \PY{o+ow}{not} \PY{n+nb}{len}\PY{p}{(}\PY{n}{llist}\PY{p}{)}\PY{p}{:}
+                                        \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{rlist}\PY{p}{)}\PY{p}{:}
+                                              \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{rlist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+                                               
+        
+                        \PY{k}{if} \PY{o+ow}{not} \PY{n+nb}{len}\PY{p}{(}\PY{n}{rlist}\PY{p}{)}\PY{p}{:}
+                                        \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{llist}\PY{p}{)}\PY{p}{:} 
+                                              \PY{n}{final}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{llist}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+        
+                \PY{k}{return} \PY{n}{final}
+        
+        \PY{k}{def} \PY{n+nf}{merge\PYZus{}sort}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{2}\PY{p}{:} \PY{k}{return} \PY{n+nb}{list}
+                \PY{n}{mid} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+                \PY{k}{return} \PY{n}{merge}\PY{p}{(}\PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n+nb}{list}\PY{p}{[}\PY{p}{:}\PY{n}{mid}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n+nb}{list}\PY{p}{[}\PY{n}{mid}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
 
     \subsubsection{3 - Descrição e Análise do Algoritmo
 2}\label{descriuxe7uxe3o-e-anuxe1lise-do-algoritmo-2}
@@ -382,59 +526,67 @@ Deve conter: * Descrição completa do segundo algoritmo escolhido: nome,
 origem, estratégia usada, e como funciona * Estrutura do algoritmo em
 pseudocódigo * Citações para a descrição do algoritmo e pseudocódigo
 
+ Descrição completa do segundo algoritmo escolhido: nome, origem,
+estratégia usada, e como funciona
+
+Nome: Bubble Sort Origem: Origem Não Achei Estrategia Usada: é o
+algoritmo de ordenação mais simples que funciona trocando repetidamente
+os elementos adjacentes se eles estiverem na ordem errada. Como
+funciona: Percorre o vetor inteiro comparando elementos adjacentes (dois
+a dois) a estrategia de trocar as posições dos elementos se eles
+estiverem fora de ordem o repita os dois passos acima com os primeiros
+n-1 itens, depois com os primeiros n-2 itens, até que reste apenas um
+item 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}66}]:} \PY{k}{def} \PY{n+nf}{bubble\PYZus{}sort}\PY{p}{(}\PY{n}{lista}\PY{p}{)}\PY{p}{:}
-            \PY{n}{elementos} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{lista}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
-            \PY{n}{ordenado} \PY{o}{=} \PY{n+nb+bp}{False}
-            \PY{k}{while} \PY{o+ow}{not} \PY{n}{ordenado}\PY{p}{:}
-                 \PY{n}{ordenado} \PY{o}{=} \PY{n+nb+bp}{True}
-                 \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{elementos}\PY{p}{)}\PY{p}{:}
-                      \PY{k}{if} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
-                          \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-                          \PY{n}{ordenado} \PY{o}{=} \PY{n+nb+bp}{False}        
-                          \PY{c+c1}{\PYZsh{}print(lista)}
-            \PY{k}{return} \PY{n}{lista}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Aplicação Bubble Sort}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{HTML}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}img src=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{./Bubble.gif}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ style=}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{width:200px;height:200px;}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ \PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}71}]:} \PY{n}{data02} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-         
-         \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
-          \PY{n}{ini} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-          \PY{n}{bubble\PYZus{}sort}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
-          \PY{n}{fim} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
-          \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tempo de Execução: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fim}\PY{o}{\PYZhy{}}\PY{n}{ini}
-          \PY{n}{tempo2} \PY{o}{=} \PY{n}{fim}\PY{o}{\PYZhy{}}\PY{n}{ini} 
-          \PY{n}{data02}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tempo2}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-Tempo de Execução:  9.05990600586e-06
-Tempo de Execução:  8.10623168945e-06
-Tempo de Execução:  8.10623168945e-06
-Tempo de Execução:  6.91413879395e-06
-Tempo de Execução:  7.15255737305e-06
-Tempo de Execução:  6.91413879395e-06
-Tempo de Execução:  6.91413879395e-06
-Tempo de Execução:  6.19888305664e-06
-Tempo de Execução:  5.96046447754e-06
-Tempo de Execução:  5.96046447754e-06
+Aplicação Bubble Sort
 
     \end{Verbatim}
 
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} <IPython.core.display.HTML object>
+\end{Verbatim}
+            
+    \subsubsection{Estrutura do algoritmo em
+pseudocódigo}\label{estrutura-do-algoritmo-em-pseudocuxf3digo}
+procedure bubbleSort( A : lista de itens ordenaveis ) defined as:
+  do
+    trocado := false
+    for each i in 0 to length( A ) - 2 do:
+      // verificar se os elementos estão na ordem certa
+      if A[ i ] > A[ i + 1 ] then
+        // trocar elementos de lugar
+        trocar( A[ i ], A[ i + 1 ] )
+        trocado := true
+      end if
+    end for
+  // enquanto houver elementos sendo reordenados.
+  while trocado
+end procedure
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\paragraph{Codigo Python}\label{codigo-python}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}73}]:} \PY{k}{print} \PY{n}{data02}
-         \PY{k}{print} \PY{n}{data01}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{def} \PY{n+nf}{bubble\PYZus{}sort}\PY{p}{(}\PY{n}{lista}\PY{p}{)}\PY{p}{:}
+           \PY{n}{elementos} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{lista}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+           \PY{n}{ordenado} \PY{o}{=} \PY{n+nb+bp}{False}
+           \PY{k}{while} \PY{o+ow}{not} \PY{n}{ordenado}\PY{p}{:}
+                \PY{n}{ordenado} \PY{o}{=} \PY{n+nb+bp}{True}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{elementos}\PY{p}{)}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+                         \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{lista}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                         \PY{n}{ordenado} \PY{o}{=} \PY{n+nb+bp}{False}        
+                         \PY{c+c1}{\PYZsh{}print(lista)}
+           \PY{k}{return} \PY{n}{lista}
 \end{Verbatim}
 
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-[9.059906005859375e-06, 8.106231689453125e-06, 8.106231689453125e-06, 6.9141387939453125e-06, 7.152557373046875e-06, 6.9141387939453125e-06, 6.9141387939453125e-06, 6.198883056640625e-06, 5.9604644775390625e-06, 5.9604644775390625e-06]
-[4.9114227294921875e-05, 4.410743713378906e-05, 0.00019812583923339844, 4.315376281738281e-05, 0.00017690658569335938, 4.315376281738281e-05, 4.291534423828125e-05, 4.100799560546875e-05, 4.291534423828125e-05, 3.695487976074219e-05]
-
-    \end{Verbatim}
 
     \subsubsection{4 - Análise Assintótica
 Comparativa}\label{anuxe1lise-assintuxf3tica-comparativa}
@@ -444,6 +596,72 @@ algoritmo 1 no melhor e pior caso em relação ao tempo de execução *
 Representação em Ozão ou Theta da complexidade do algoritmo 2 no melhor
 e pior caso em relação ao tempo de execução * Discussão a respeito de
 qual algoritmo é o mais eficiente
+
+    Complexidade Algoritmo 1 Merge
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Caso & Analise Assintótica & Tempo Execução\tabularnewline
+\midrule
+\endhead
+Melhor & O(n log base 2 n) & 0.000979900360107\tabularnewline
+Pior & O(n log base 2 n) & 0.0190689563751\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{m} \PY{o}{=} \PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n}{Metrica\PYZus{}merge}\PY{p}{)}
+         \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Melhor Caso: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Pior Caso: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{m}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Melhor Caso:  0.000979900360107
+Pior Caso:  0.0190689563751
+
+    \end{Verbatim}
+
+    Complexidade Algoritmo 2 Bubble
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Caso & Analise Assintótica & Tempo de Execução\tabularnewline
+\midrule
+\endhead
+Melhor & O(n²) & 0.000216007232666\tabularnewline
+Pior & O(n²) & 0.00135803222656\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{m} \PY{o}{=} \PY{n}{bubble\PYZus{}sort}\PY{p}{(}\PY{n}{Metrica\PYZus{}bubble}\PY{p}{)}
+         \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Melhor Caso: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Pior Caso: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{m}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Melhor Caso:  0.000216007232666
+Pior Caso:  0.00135803222656
+
+    \end{Verbatim}
+
+    \subsubsection{Discussão a respeito de qual algoritmo é o mais
+eficiente}\label{discussuxe3o-a-respeito-de-qual-algoritmo-uxe9-o-mais-eficiente}
+
+    Bubble sort por ser uma função quadrática começa a rodar mais
+rapidamente enquanto o merge sort é uma função log-linear na base 2 e
+demora mais, ou seja é mais lento. Enquanto a sua estabilidade ao longo
+do tempo o merge sort é mais recomendado pois é estável.
+
+    O Bubble sort no melhor caso ele rodou em 0,00021 de segundos e no pior
+caso em 0,00135. O merge sort no melhor caso ele rodou em 0,00097 de
+segundos e no pior caso ele rodou em 0,01906 de segundos.
+
+    Segundo o Professor Moacir Ponti Jr. do Instituto de Ciências
+Matemáticas e de Computação da USP, o algoritmo bubble sort consome
+muito tempo quando todos os itens estão ordenados.
 
     \subsubsection{5 - Análise Experimental
 Opcional}\label{anuxe1lise-experimental-opcional}
@@ -455,25 +673,201 @@ usados como entrada, e método utilizado de quantificação de
 tempo/operações primitivas. * Gráfico comparando ambas curvas de
 desempenho obtidas pelos algoritmos de ordenação escolhidos.
 
+    \paragraph{Valores de Test}\label{valores-de-test}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k+kn}{from} \PY{n+nn}{random} \PY{k+kn}{import} \PY{n}{shuffle}
+         \PY{k+kn}{import} \PY{n+nn}{threading}
+         \PY{k+kn}{import} \PY{n+nn}{time}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{x0} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 0}
+         \PY{n}{x1} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{500}\PY{p}{)}     \PY{c+c1}{\PYZsh{} 1}
+         \PY{n}{x2} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}    \PY{c+c1}{\PYZsh{} 2}
+         \PY{n}{x3} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1500}\PY{p}{)}    \PY{c+c1}{\PYZsh{} 3 }
+         \PY{n}{x4} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2500}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 4 }
+         \PY{n}{x5} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3000}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 5}
+         \PY{n}{x6} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{35000}\PY{p}{)}   \PY{c+c1}{\PYZsh{} 6}
+         \PY{n}{x7} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{40000}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 7 }
+         \PY{n}{test} \PY{o}{=} \PY{p}{[}\PY{n}{x0}\PY{p}{,}\PY{n}{x1}\PY{p}{,}\PY{n}{x2}\PY{p}{,}\PY{n}{x3}\PY{p}{,}\PY{n}{x4}\PY{p}{,}\PY{n}{x5}\PY{p}{,}\PY{n}{x6}\PY{p}{,}\PY{n}{x7}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{shuffle}\PY{p}{(}\PY{n}{test}\PY{p}{[}\PY{n}{p}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{def} \PY{n+nf}{Metrica\PYZus{}Bubble}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+          \PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ini} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+             \PY{n}{bubble\PYZus{}sort}\PY{p}{(}\PY{n}{test}\PY{p}{[}\PY{n}{p}\PY{p}{]}\PY{p}{)}
+             \PY{n}{fim} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+             \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{p}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[Bubble] }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ Tempo de Execução: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fim}\PY{o}{\PYZhy{}}\PY{n}{ini}
+             \PY{n}{tempo} \PY{o}{=} \PY{n}{fim}\PY{o}{\PYZhy{}}\PY{n}{ini} 
+             \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tempo}\PY{p}{)}
+          \PY{k}{return} \PY{n}{data}  
+         
+         \PY{k}{def} \PY{n+nf}{Metrica\PYZus{}Merge}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+          \PY{n}{data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{test}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{ini} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+             \PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n}{test}\PY{p}{[}\PY{n}{p}\PY{p}{]}\PY{p}{)}
+             \PY{n}{fim} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+             \PY{k}{print} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{p}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[Merge] }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ Tempo de Execução: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{fim}\PY{o}{\PYZhy{}}\PY{n}{ini}
+             \PY{n}{tempo} \PY{o}{=} \PY{n}{fim}\PY{o}{\PYZhy{}}\PY{n}{ini} 
+             \PY{n}{data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{tempo}\PY{p}{)}
+          \PY{k}{return} \PY{n}{data}  
+\end{Verbatim}
+
+
+    \subsubsection{"Rodando Metricas com
+Mult-thread"}\label{rodando-metricas-com-mult-thread}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{t} \PY{o}{=} \PY{n}{threading}\PY{o}{.}\PY{n}{Thread}\PY{p}{(}\PY{n}{target}\PY{o}{=}\PY{n}{Metrica\PYZus{}Bubble}\PY{p}{,}\PY{p}{)}
+         \PY{n}{t2} \PY{o}{=} \PY{n}{threading}\PY{o}{.}\PY{n}{Thread}\PY{p}{(}\PY{n}{target}\PY{o}{=}\PY{n}{Metrica\PYZus{}Merge}\PY{p}{,}\PY{p}{)}
+         \PY{n}{t}\PY{o}{.}\PY{n}{start}\PY{p}{(}\PY{p}{)}
+         \PY{n}{t2}\PY{o}{.}\PY{n}{start}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+0 [Merge] 	
+ Tempo de Execução:  0.00234603881836
+
+1 [Merge] 	
+ Tempo de Execução:  0.00824189186096
+
+2 [Merge] 	
+ Tempo de Execução:  0.0161800384521
+
+0 [Bubble] 	
+ Tempo de Execução:  0.045725107193
+
+3 [Merge] 	
+ Tempo de Execução:  0.0324440002441
+
+4 [Merge] 	
+ Tempo de Execução:  0.0396988391876
+
+5 [Merge] 	
+ Tempo de Execução:  0.0295140743256
+
+1 [Bubble] 	
+ Tempo de Execução:  0.126824140549
+
+6 [Merge] 	
+ Tempo de Execução:  0.540427923203
+
+7 [Merge] 	
+ Tempo de Execução:  0.719171047211
+
+2 [Bubble] 	
+ Tempo de Execução:  1.25040483475
+
+3 [Bubble] 	
+ Tempo de Execução:  0.215059995651
+
+4 [Bubble] 	
+ Tempo de Execução:  0.574501991272
+
+5 [Bubble] 	
+ Tempo de Execução:  0.72434592247
+
+6 [Bubble] 	
+ Tempo de Execução:  96.4967339039
+
+7 [Bubble] 	
+ Tempo de Execução:  126.438951015
+
+    \end{Verbatim}
+
+    \subsubsection{Metricas sem Mult-thread}\label{metricas-sem-mult-thread}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{Metrica\PYZus{}bubble} \PY{o}{=} \PY{n}{Metrica\PYZus{}Bubble}\PY{p}{(}\PY{p}{)}
+         \PY{n}{Metrica\PYZus{}merge} \PY{o}{=} \PY{n}{Metrica\PYZus{}Merge}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+0 [Bubble] 	
+ Tempo de Execução:  0.000216007232666
+
+1 [Bubble] 	
+ Tempo de Execução:  0.000945091247559
+
+2 [Bubble] 	
+ Tempo de Execução:  0.000577211380005
+
+3 [Bubble] 	
+ Tempo de Execução:  0.000468015670776
+
+4 [Bubble] 	
+ Tempo de Execução:  0.000679016113281
+
+5 [Bubble] 	
+ Tempo de Execução:  0.000565052032471
+
+6 [Bubble] 	
+ Tempo de Execução:  0.000970840454102
+
+7 [Bubble] 	
+ Tempo de Execução:  0.00135803222656
+
+0 [Merge] 	
+ Tempo de Execução:  0.000979900360107
+
+1 [Merge] 	
+ Tempo de Execução:  0.00390791893005
+
+2 [Merge] 	
+ Tempo de Execução:  0.0108478069305
+
+3 [Merge] 	
+ Tempo de Execução:  0.013839006424
+
+4 [Merge] 	
+ Tempo de Execução:  0.0141232013702
+
+5 [Merge] 	
+ Tempo de Execução:  0.0141110420227
+
+6 [Merge] 	
+ Tempo de Execução:  0.0157148838043
+
+7 [Merge] 	
+ Tempo de Execução:  0.0190689563751
+
+    \end{Verbatim}
+
     \subsubsection{Plot Grafico de Desempenho Merge
 Sort}\label{plot-grafico-de-desempenho-merge-sort}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}45}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k+kn}{as} \PY{n+nn}{sns}
          \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}74}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data01}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Metrica\PYZus{}merge}\PY{p}{)}
          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Merge Sort}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -481,14 +875,14 @@ Sort}\label{plot-grafico-de-desempenho-merge-sort}
 sort}\label{plot-grafico-de-desempenho-bubble-sort}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}75}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data02}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{Metrica\PYZus{}bubble}\PY{p}{)}
          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bubble sort}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_44_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -504,6 +898,19 @@ ambiguities and interpretive implications. European Journal of
 Communication, 26(1). Saggion, H. (2018). LaSTUS/TALN at Complex Word
 Identification (CWI) 2018 Shared Task. In Proceedings of the Thirteenth
 Workshop on Innovative Use of NLP for Building Educational Applications
+
+MERGESORT -
+https://www.ft.unicamp.br/liag/siteEd/includes/arquivos/MergeSortResumo\_Grupo4\_ST364A\_2010.pdf
+
+Merge Sort -
+https://pt.slideshare.net/dianacarolinatarapueschirivi/merge-sort-25398213
+
+bubble sort -
+http://www2.dcc.ufmg.br/disciplinas/aeds2\_turmaA1/bubblesort.pdf
+
+https://edisciplinas.ups.br/pluginfile.php/2223654/mod\_resource/content/1/ICC2\_ordenacao\_parte1.pdf
+
+https://www.ufrj.brb/jairo\_souza/files/2009/12/2-Ordena\%C3\%A7\%C3\%A3o-BubbleSort.pdf
 
 
     % Add a bibliography block to the postdoc
