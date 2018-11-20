@@ -6,17 +6,39 @@
 | Membros | Nome                     |
 |---------|--------------------------|
 | 01      | Juan Manoel              |
-| 02      | Robin Hoodix             |
+| 02      | Robson Barreto             |
 | 03      | Yang Jin Samara cavalari |
 | 04      | Gustavo Jeromine         |
 | 05      | Vladimir da Silva Borges |
 
 ### 1 - Introdução
 
-Deve conter:
+Deve conter:(Vladimir e Robson)
 * Uma breve descrição do objetivo do trabalho
 * O que são algoritmos de ordenação, o que fazem, como funcionam, onde podem ser aplicados, importância etc
 * Uma breve introdução aos algoritmos escolhidos
+
+
+O trabalho a respeito de algoritmos de ordenação tem por objetivo principal a análise do código implementado, pontuando seus principais atributos relacionando volume de dados e tempo de execução, oque é muito comum no setor de análise de dados. Os resultados apresentados serão de cunho técnico e gráfico, mostrando a curva de variação no desempenho em cada tipo de algoritmo de ordenação.                                                                
+Algoritmos de ordenação são métodos em termos de organização de código que tem por objetivo fazer  a ordenação de dados, ou seja, manipulam dados de uma sequência aleatória transformando-os em uma sequência ordenada decrescente, crescente, alfabética ou até mesmo falando em Orientação a Objeto, comparação de Objetos. Funcionam com uma repetição sistêmica dentro de um conjunto finito de elementos, comparando em  cada ciclo os dados de cada um, e trocando suas posições conforme for o objetivo do algoritmo. Podem ser aplicados em programas que frequentemente recebem uma grande quantidade de dados e por esse motivo necessitam de uma composição correta dos mesmos, para que eventualmente haja uma melhor performance do programa para executar a busca. 
+Os algoritmos de ordenação tem grande importância no meio computacional, principalmente na área de programação por determinar muitas vezes o tempo de execução do programa em termos de alocação de dados, oque sempre foi um objetivo em comum entre os desenvolvedores.
+O MERGE SORT que usa a estratégia de classificação, ordenação por partição (dividir e conquistar). O BUBLE SORT tem como característica percorrer o vetor por completo, comparando elementos adjacentes (dois a dois).
+
+
+Objetivo:
+
+Escrever uma análise descrevendo e comparando dois algoritmos de ordenação distintos.
+
+Objetivos Específicos:
+
+- Buscar por dois algoritmos distintos de ordenação na literatura.
+
+- Descrever como funcionam, de onde surgiram, etc.
+
+- Buscar na literatura pela complexidade assintótica no melhor e pior caso em notação Ozão ou Theta em relação ao tempo de execução/número de operações primitivas realizadas.
+
+- Analizar as diferenças de complexidade entre os dois algoritmos e discutir a respeito da eficiência dos mesmos.
+
 
 
 
@@ -92,32 +114,20 @@ HTML('<img src="./merge.gif" style="width:200px;height:200px;" >')
 <b>Merge(A, p, q, r)</b>
 
     n1 = q - p + 1
-    
     n2 = r - q
-    
     sejam L[1 ... n1 + 1] e R[1 ... n2 + 1]
-    
     for i = 1 to n1
-    
         L[i] = A[p + i - 1]
-        
     for j = 1 to n2
-    
         R[j] = A[q + j]
 
     i = 1
-    
     j = 1
-    
 
     for k = p to r
-    
         if L[i] <= R[j] then A[k] = L[i]
-        
             i = i + 1
-            
         else A[k] = R[j]
-        
             j = j + 1
             
             
@@ -125,86 +135,47 @@ HTML('<img src="./merge.gif" style="width:200px;height:200px;" >')
 
 ### Citações para a descrição do algoritmo e pseudocódigo
 mergesort(A[0...n - 1], inicio, fim)
-
 |   se(inicio < fim)
-
 |   |   meio ← (inicio + fim) / 2 //calcula o meio
-
 |   |   mergesort(A, inicio, meio) //ordena o subvetor esquerdo
-
 |   |   mergesort(A, meio + 1, fim) //ordena o subvetor direito
-
 |   |   merge(A, inicio, meio, fim) //funde os subvetores esquerdo e direito
-
 |   fim_se
-
 fim_mergesort
 
 merge(A[0...n - 1], inicio, meio, fim)
-
 |   tamEsq ← meio - inicio + 1 //tamanho do subvetor esquerdo
-
 |   tamDir ← fim - meio //tamanho do subvetor direito
-
 |   inicializar vetor Esq[0...tamEsq - 1]
-
 |   inicializar vetor Dir[0...tamDir - 1]
-
 |   para i ← 0 até tamEsq - 1
-
 |   |   Esq[i] ← A[inicio + i] //elementos do subvetor esquerdo
-
 |   fim_para
-
 |   para j ← 0 até tamDir - 1
-
 |   |   Dir[j] ← A[meio + 1 + j] //elementos do subvetor direito
-
 |   fim_para
-
 |   idxEsq ← 0 //índice do subvetor auxiliar esquerdo
-
 |   idxDir ← 0 //índice do subvetor auxiliar direito
-
 |   para k ← inicio até fim
-
 |   |   se(idxEsq < tamEsq)
-
 |   |   |   se(idxDir < tamDir)
-
 |   |   |   |   se(Esq[idxEsq] < Dir[idxDir])
-
 |   |   |   |   |   A[k] ← Esq[idxEsq]
-
 |   |   |   |   |   idxEsq ← idxEsq + 1
-
 |   |   |   |   senão
-
 |   |   |   |   |   A[k] ← Dir[idxDir]
-
 |   |   |   |   |   idxDir ← idxDir + 1
-
 |   |   |   |   fim_se
-
 |   |   |   senão
-
 |   |   |   |   A[k] ← Esq[idxEsq]
-
 |   |   |   |   idxEsq ← idxEsq + 1
-
 |   |   |   fim_se
-
 |   |   senão
-
 |   |   |   A[k] ← Dir[idxDir]
-
 |   |   |   idxDir ← idxDir + 1
 |   |   fim_se
-
 |   fim_para
-
 fim_merge
-
 <h4><b><i>" Observe que o método merge utiliza dois vetores auxiliares. A utilização desses vetores faz com o Merge Sort tenha complexidade O(n) no espaço.
 
 Por causa da cópia de elementos entre os vetores auxiliares e o vetor A, a complexidade no tempo do método merge é Θ(n) ou O(n).
@@ -287,27 +258,16 @@ HTML('<img src="./Bubble.gif" style="width:200px;height:200px;" >')
 procedure bubbleSort( A : lista de itens ordenaveis ) defined as:
   do
     trocado := false
-    
     for each i in 0 to length( A ) - 2 do:
-    
       // verificar se os elementos estão na ordem certa
-      
       if A[ i ] > A[ i + 1 ] then
-      
         // trocar elementos de lugar
-        
         trocar( A[ i ], A[ i + 1 ] )
-        
         trocado := true
-        
       end if
-      
     end for
-    
   // enquanto houver elementos sendo reordenados.
-  
   while trocado
-  
 end procedure
 ---
 #### Codigo Python 
@@ -335,6 +295,52 @@ Deve conter:
 * Discussão a respeito de qual algoritmo é o mais eficiente
 
 
+<center><h4>Complexidade Algoritmo 1 Merge</h4></center>
+
+| Caso    | Analise Assintótica            | Tempo Execução   |
+|---------|--------------------------------|------------------|
+| Melhor  |       O(n log base 2 n)        | 0.000979900360107 | 
+| Pior    |       O(n log base 2 n)        | 0.0190689563751   |
+
+
+
+```python
+m = merge_sort(Metrica_merge)
+print "Melhor Caso: ",m[0]
+print "Pior Caso: ",m[-1]
+```
+
+    Melhor Caso:  0.000979900360107
+    Pior Caso:  0.0190689563751
+
+
+<center><h4>Complexidade Algoritmo 2 Bubble</h4></center>
+
+| Caso    | Analise Assintótica            | Tempo de Execução |
+|---------|--------------------------------|-------------------|
+| Melhor  |       O(n²)                    | 0.000216007232666 |
+| Pior    |       O(n²)                    | 0.00135803222656  | 
+
+
+
+```python
+m = bubble_sort(Metrica_bubble)
+print "Melhor Caso: ",m[0]
+print "Pior Caso: ",m[-1]
+```
+
+    Melhor Caso:  0.000216007232666
+    Pior Caso:  0.00135803222656
+
+
+### Discussão a respeito de qual algoritmo é o mais eficiente
+
+Bubble sort por ser uma função quadrática começa a rodar mais rapidamente enquanto o merge sort é uma função log-linear na base 2 e demora mais, ou seja é mais lento. Enquanto a sua estabilidade ao longo do tempo o merge sort é mais recomendado pois é estável.
+
+O Bubble sort no melhor caso ele rodou em 0,00021 de segundos e no pior caso em 0,00135. O merge sort no melhor caso ele rodou em 0,00097 de segundos e no pior caso ele rodou em 0,01906 de segundos.
+
+Segundo o Professor Moacir Ponti Jr. do Instituto de Ciências Matemáticas e de Computação da USP, o algoritmo bubble sort consome muito tempo quando todos os itens estão ordenados.
+
 ### 5 - Análise Experimental Opcional
 
 Esta seção opcional deve conter:
@@ -360,8 +366,8 @@ x2 = range(1000)    # 2
 x3 = range(1500)    # 3 
 x4 = range(2500)   # 4 
 x5 = range(3000)   # 5
-x6 = range(3500)   # 6
-x7 = range(4000)   # 7 
+x6 = range(35000)   # 6
+x7 = range(40000)  # 7 
 test = [x0,x1,x2,x3,x4,x5,x6,x7]
 ```
 
@@ -408,53 +414,53 @@ t2.start()
 ```
 
     
-    0 [Bubble] 	
-     Tempo de Execução:  0.000622987747192
-    
-    1 [Bubble] 	
-     Tempo de Execução:  0.000384092330933
-    
     0 [Merge] 	
-     Tempo de Execução:  0.00366687774658
-    
-    2 [Bubble] 	
-     Tempo de Execução:  0.018935918808
+     Tempo de Execução:  0.00234603881836
     
     1 [Merge] 	
-     Tempo de Execução:  0.0168769359589
+     Tempo de Execução:  0.00824189186096
     
-    3 [Bubble] 	
-     Tempo de Execução:  0.0126659870148
-    
-    4 [Bubble] 	
-     Tempo de Execução:  0.00103998184204
-    
-    5 [Bubble] 	
-     Tempo de Execução:  0.00441908836365
-    
-    6 [Bubble] 	
-     Tempo de Execução:  0.00205206871033
-     
     2 [Merge] 	
-     Tempo de Execução:  0.0231020450592
+     Tempo de Execução:  0.0161800384521
     
-    7 [Bubble] 	
-     Tempo de Execução:  0.00606799125671
+    0 [Bubble] 	
+     Tempo de Execução:  0.045725107193
     
     3 [Merge] 	
-     Tempo de Execução:  0.0155539512634
+     Tempo de Execução:  0.0324440002441
     
     4 [Merge] 	
-     Tempo de Execução:  0.0172791481018
+     Tempo de Execução:  0.0396988391876
     
     5 [Merge] 	
-     Tempo de Execução:  0.0210380554199
+     Tempo de Execução:  0.0295140743256
+    
+    1 [Bubble] 	
+     Tempo de Execução:  0.126824140549
     
     6 [Merge] 	
-     Tempo de Execução:  0.0194540023804
+     Tempo de Execução:  0.540427923203
     
     7 [Merge] 	
-     Tempo de Execução:  0.0222051143646
+     Tempo de Execução:  0.719171047211
+    
+    2 [Bubble] 	
+     Tempo de Execução:  1.25040483475
+    
+    3 [Bubble] 	
+     Tempo de Execução:  0.215059995651
+    
+    4 [Bubble] 	
+     Tempo de Execução:  0.574501991272
+    
+    5 [Bubble] 	
+     Tempo de Execução:  0.72434592247
+    
+    6 [Bubble] 	
+     Tempo de Execução:  96.4967339039
+    
+    7 [Bubble] 	
+     Tempo de Execução:  126.438951015
 
 
 ### Metricas sem Mult-thread
@@ -467,52 +473,52 @@ Metrica_merge = Metrica_Merge()
 
     
     0 [Bubble] 	
-     Tempo de Execução:  0.000345945358276
+     Tempo de Execução:  0.000216007232666
     
     1 [Bubble] 	
-     Tempo de Execução:  0.00552105903625
+     Tempo de Execução:  0.000945091247559
     
     2 [Bubble] 	
-     Tempo de Execução:  0.00353002548218
+     Tempo de Execução:  0.000577211380005
     
     3 [Bubble] 	
-     Tempo de Execução:  0.00287413597107
+     Tempo de Execução:  0.000468015670776
     
     4 [Bubble] 	
-     Tempo de Execução:  0.0020809173584
+     Tempo de Execução:  0.000679016113281
     
     5 [Bubble] 	
-     Tempo de Execução:  0.00330495834351
+     Tempo de Execução:  0.000565052032471
     
     6 [Bubble] 	
-     Tempo de Execução:  0.00319004058838
+     Tempo de Execução:  0.000970840454102
     
     7 [Bubble] 	
-     Tempo de Execução:  0.00417494773865
+     Tempo de Execução:  0.00135803222656
     
     0 [Merge] 	
-     Tempo de Execução:  0.00340819358826
+     Tempo de Execução:  0.000979900360107
     
     1 [Merge] 	
-     Tempo de Execução:  0.0119681358337
+     Tempo de Execução:  0.00390791893005
     
     2 [Merge] 	
-     Tempo de Execução:  0.0150141716003
+     Tempo de Execução:  0.0108478069305
     
     3 [Merge] 	
-     Tempo de Execução:  0.0140089988708
+     Tempo de Execução:  0.013839006424
     
     4 [Merge] 	
-     Tempo de Execução:  0.028599023819
+     Tempo de Execução:  0.0141232013702
     
     5 [Merge] 	
-     Tempo de Execução:  0.0294680595398
+     Tempo de Execução:  0.0141110420227
     
     6 [Merge] 	
-     Tempo de Execução:  0.0183010101318
+     Tempo de Execução:  0.0157148838043
     
     7 [Merge] 	
-     Tempo de Execução:  0.021369934082
+     Tempo de Execução:  0.0190689563751
 
 
 ### Plot Grafico de Desempenho Merge Sort
@@ -532,7 +538,7 @@ plt.show()
 ```
 
 
-![png](output_33_0.png)
+![png](output_42_0.png)
 
 
 ### Plot Grafico de Desempenho bubble sort
@@ -545,7 +551,7 @@ plt.show()
 ```
 
 
-![png](output_35_0.png)
+![png](output_44_0.png)
 
 
 ### 6 - Referências
@@ -561,3 +567,8 @@ MERGESORT - https://www.ft.unicamp.br/liag/siteEd/includes/arquivos/MergeSortRes
 Merge Sort - https://pt.slideshare.net/dianacarolinatarapueschirivi/merge-sort-25398213
 
 bubble sort - http://www2.dcc.ufmg.br/disciplinas/aeds2_turmaA1/bubblesort.pdf
+
+https://edisciplinas.ups.br/pluginfile.php/2223654/mod_resource/content/1/ICC2_ordenacao_parte1.pdf
+
+https://www.ufrj.brb/jairo_souza/files/2009/12/2-Ordena%C3%A7%C3%A3o-BubbleSort.pdf
+
